@@ -12,12 +12,13 @@
 		<Configurations>Debug;Release;Gen</Configurations>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<PackageIcon>icon.png</PackageIcon>
+		<Copyright>Bnaya Eshet</Copyright>
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<PackageTags>dotnet, .net, generator, source-code, compile-time, Bnaya</PackageTags>
+		<PackageTags>builder, pattern, dotnet, .net, generator, source-code, compile-time, Bnaya</PackageTags>
 		<PackageProjectUrl>https://medium.com/Bnayae</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/Bnayae/Bnaya.SourceCodeGenerator.Extensuions</RepositoryUrl>
+		<RepositoryUrl>https://github.com/bnayae/Bnaya.BuilderPatternGenerator</RepositoryUrl>
 		<RepositoryType>GitHub</RepositoryType>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>

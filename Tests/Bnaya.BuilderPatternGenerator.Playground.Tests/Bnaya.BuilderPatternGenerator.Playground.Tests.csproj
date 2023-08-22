@@ -7,6 +7,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Include="..\..\ReadMe.md" Link="ReadMe.md" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="FakeItEasy" Version="7.4.0" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.1" />
 		<PackageReference Include="System.Collections.Immutable" Version="7.0.0" />

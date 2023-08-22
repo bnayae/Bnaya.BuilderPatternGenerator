@@ -5,7 +5,7 @@
 		<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
 		<LangVersion>10</LangVersion>
 		<Nullable>enable</Nullable>
-		<Description>Sample Source Code Generator Extensions</Description>
+		<Description>Simplify the process of creating builders for your classes, structs, or records</Description>
 		<Configurations>Debug;Release;Gen</Configurations>
 	</PropertyGroup>
 	
@@ -25,6 +25,8 @@
 		<GenerateDocumentationFile>False</GenerateDocumentationFile>
 		<EnableNETAnalyzers>True</EnableNETAnalyzers>
 		<AssemblyName>BuilderPatternGenerator</AssemblyName>
+		<Title>Builder Pattern Generator</Title>
+		<PackageReadmeFile>ReadMe.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -33,6 +35,10 @@
 
 	<ItemGroup>
 		<None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+		<None Include="..\..\ReadMe.md" Link="ReadMe.md">
+		  <Pack>True</Pack>
+		  <PackagePath>\</PackagePath>
+		</None>
 	</ItemGroup>
 
 	<ItemGroup>
