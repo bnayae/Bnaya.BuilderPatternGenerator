@@ -1,0 +1,67 @@
+name: Deploy
+  
+on:
+  workflow_run:
+    workflows: ["Prepare"]
+    types:
+      - completed
+
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'     
+        required: false
+        default: 'warning'
+
+    
+env: # https://docs.github.com/en/actions/learn-github-actions/environment-variables
+  BUILD_CONFIG: Release
+  DOTNET_VER: 7.0.x
+  INCLUDE_PRERELEASE: false
+  
+jobs:
+  build:
+
+    name: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2 
+        
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ env.DOTNET_VER }}
+        include-prerelease: ${{ env.INCLUDE_PRERELEASE }}
+        
+    - name: Restore dependencies
+      run: dotnet restore /property:Configuration=${{ env.BUILD_CONFIG }}
+    - name: Build
+      run: dotnet build  --configuration ${{ env.BUILD_CONFIG }} --no-restore 
+    - name: Test
+      run: dotnet test Tests/Bnaya.BuilderPatternGenerator.Playground.Tests --configuration ${{ env.BUILD_CONFIG }} --no-restore --no-build --verbosity normal 
+
+    - name: Push generated package to GitHub registry
+      run: dotnet nuget push ./**/*.nupkg -k ${{ secrets.NUGET_PUBLISH }} -s https://api.nuget.org/v3/index.json --skip-duplicate 
+
+  src-gen:
+
+    name: src-gen
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ env.DOTNET_VER }}
+        include-prerelease: ${{ env.INCLUDE_PRERELEASE }}
+
+    - name: Restore dependencies
+      run: dotnet restore /property:Configuration=Gen
+    - name: Build
+      run: dotnet build  --configuration Gen --no-restore 
+
+    - name: Push generated package to GitHub registry
+      run: dotnet nuget push ./**/*.nupkg -k ${{ secrets.NUGET_PUBLISH }} -s https://api.nuget.org/v3/index.json --skip-duplicate

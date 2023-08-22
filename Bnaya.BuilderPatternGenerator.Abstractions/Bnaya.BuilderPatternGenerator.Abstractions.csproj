@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<Description>Code generator for Bnaya.CodeGeneration.BuilderPatternGeneration</Description>
+		<Configurations>Debug;Release;Gen</Configurations>
+		<IsRoslynComponent>true</IsRoslynComponent>
+		<AssemblyName>BuilderPatternGenerator.Abstractions</AssemblyName>
+		<!--<IncludeBuildOutput>false</IncludeBuildOutput>-->
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="System.Collections.Immutable" Version="7.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="icon.png">
+	    <Pack>True</Pack>
+	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Update="Microsoft.SourceLink.GitHub" Version="1.1.1" />
+	</ItemGroup>
+
+</Project>

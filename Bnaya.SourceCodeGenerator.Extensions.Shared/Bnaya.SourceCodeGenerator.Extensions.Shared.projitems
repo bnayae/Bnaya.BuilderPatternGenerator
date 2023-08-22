@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>ac507f29-16be-4646-8faa-768dedf4e087</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Bnaya.SourceCodeGenerator.Extensions.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\GenerationContent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\GenerationInput.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\MemberInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Exceptions\SourceGeneratorException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Generators\AttributeGeneratorBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Generators\GeneratorBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SourceGeneratorExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Visitors\AssignmentToVisitor.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)ReadMe.md" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,25 @@
+name: Prepare
+
+# doc: https://docs.github.com/en/actions
+# variables: https://docs.github.com/en/actions/learn-github-actions/environment-variables
+# secrets: https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#example-17
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'     
+        required: false
+        default: 'warning'
+    
+  
+jobs:
+
+  version_increment:
+    uses: bnayae/open-workflows/.github/workflows/dotnet-increment-version.yml@main
+      
+ 
