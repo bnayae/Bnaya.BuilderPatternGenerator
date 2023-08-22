@@ -1,6 +1,7 @@
 ﻿# Builder Pattern Code Generation for .NET
 
-
+[![NuGet](https://img.shields.io/nuget/v/BuilderPatternGenerator.svg)](https://www.nuget.org/packages/BuilderPatternGenerator/)  
+[![Deploy](https://github.com/bnayae/Bnaya.BuilderPatternGenerator/actions/workflows/build-publish-v2.yml/badge.svg)](https://github.com/bnayae/Bnaya.BuilderPatternGenerator/actions/workflows/build-publish-v2.yml)
 
 This tool is **designed to simplify the process of creating builders pattern** for your classes, structs, or records. Unlike traditional builder generation tools, our approach focuses on immutability and ease of use. We've incorporated features that make building objects even more convenient and user-friendly.
 
