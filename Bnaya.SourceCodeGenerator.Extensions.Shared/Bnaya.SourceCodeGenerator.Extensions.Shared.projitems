@@ -18,7 +18,4 @@
     <Compile Include="$(MSBuildThisFileDirectory)SourceGeneratorExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Visitors\AssignmentToVisitor.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)ReadMe.md" />
-  </ItemGroup>
 </Project>

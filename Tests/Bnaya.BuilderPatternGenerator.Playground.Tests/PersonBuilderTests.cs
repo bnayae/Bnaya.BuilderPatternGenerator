@@ -11,13 +11,13 @@ public class PersonBuilderTests
     public void PersonBuilder_Test()
     {
         DateTime dateTime = DateTime.Now.AddYears(-32);
-        var p1 = PersonBuilder.CreateBuilder()
+        var p1 = Person.CreateBuilder()
                        .AddName("Joe")
                        .AddId(3)
                        .AddEmail("joe16272@gmail.com")
                        .AddBirthday(dateTime)
                        .Build();
 
-        Assert.Equal(p1, new PersonBuilder(3, "Joe") { Email = "joe16272@gmail.com", Birthday = dateTime });
+        Assert.Equal(p1, new Person(3, "Joe") { Email = "joe16272@gmail.com", Birthday = dateTime });
     }
 }
