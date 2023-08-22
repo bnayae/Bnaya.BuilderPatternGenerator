@@ -6,6 +6,7 @@ using System.Text;
 
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.Diagnostics;
 
 namespace Bnaya.BuilderPatternGenerator.BuilderPatternGeneration;
 
@@ -22,7 +23,15 @@ public partial class BuilderPatternGenerator : AttributeGeneratorBase
         INamedTypeSymbol typeSymbol = input.Symbol;
         TypeDeclarationSyntax syntax = input.Syntax;
         if (!syntax.IsPartial())
-            throw new InvalidCastException($"{syntax.ToFullString()}: expected to be mark as a partial");
+        {
+            var diagnostic = Diagnostic.Create(
+                new DiagnosticDescriptor("BLDPTRN: 001", "partial is required",
+                $"{typeSymbol.Name}, must be marked as 'partial'", "CustomErrorCategory",
+                DiagnosticSeverity.Error, isEnabledByDefault: true),
+                Location.None); 
+            context.ReportDiagnostic(diagnostic);
+            yield break;
+        }
 
         var cancellationToken = context.CancellationToken;
         IMethodSymbol ctor = GetConstructor();

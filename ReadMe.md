@@ -11,9 +11,6 @@ This tool is **designed to simplify the process of creating builders pattern** f
 - [Getting Started](#getting-started)
 - [Usage](#usage)
 - [Examples](#examples)
-- [Advanced Usage](#advanced-usage)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Introduction
 
@@ -31,53 +28,48 @@ The Builder Pattern Code Generation tool is designed with the modern developer i
 
 To start using the Builder Pattern Code Generation tool, follow these simple steps:
 
-1. **Installation**: Include the builder generation library in your project. You can either download the package from [NuGet](https://www.nuget.org/) or include it as a project reference.
+1. **Installation**: Include the NuGet of the builder generation and the abstraction libraries:
 
-2. **Decorate Your Type**: Mark the class, struct, or record you want to generate a builder for with the appropriate attributes. This signals the generator to create the builder for your type.
+```bash
+dotnet add package BuilderPatternGenerator 
+dotnet add package BuilderPatternGenerator.Abstractions
+```
 
-3. **Configure Builder**: Use the provided configuration options to set up the builder's behavior, such as naming conventions and visibility modifiers.
+2. **Decorate Your Type**: Mark the class, struct, or record you want to generate a builder for with the `[GenerateBuilderPattern]` attributes. This signals the generator to create the builder for your type.
 
 ## Usage
 
 Using the generated builder is intuitive and straightforward. Here's a basic example:
 
-```csharp
-// Import the necessary namespaces
-using YourNamespace.Builders;
+```cs
+// PersonBuilder.cs
+[GenerateBuilderPattern]
+public partial record PersonBuilder(int Id, string Name)
+{
+    public required string Email { get; init; }
+    public DateTime Birthday { get; init; }
+}
+```
 
-// ...
+> Don't forget to mark the Type as `partial`
 
-// Create a new builder instance
-var personBuilder = PersonBuilder.Create();
+```cs
+[Fact]
+public void PersonBuilder_Test()
+{
+    DateTime dateTime = DateTime.Now.AddYears(-32);
+    var p1 = PersonBuilder.CreateBuilder()
+                    .AddName("Joe")
+                    .AddId(3)
+                    .AddEmail("joe16272@gmail.com")
+                    .AddBirthday(dateTime)
+                    .Build();
 
-// Provide mandatory fields
-var person = personBuilder
-    .WithName("John Doe")
-    .WithAge(30)
-    .BuildMandatory();
-
-// Now you can provide optional information
-personBuilder.WithEmail("john@example.com");
-personBuilder.WithPhone("+1234567890");
-var completePerson = personBuilder.Build();
+    Assert.Equal(p1, new PersonBuilder(3, "Joe") { Email = "joe16272@gmail.com", Birthday = dateTime });
+}
 ```
 
 ## Examples
 
-For more comprehensive examples, check out the `Examples` directory in our GitHub repository. These examples cover various scenarios, demonstrating the power and flexibility of our Immutable Builder Code Generation tool.
+For more comprehensive examples, check out the `Bnaya.BuilderPatternGenerator.SrcGen.Playground` project in our GitHub repository. These examples cover various scenarios, demonstrating the power and flexibility of our  Builder Pattern Code Generation tool.
 
-## Advanced Usage
-
-Our tool offers advanced configuration options that allow you to customize the generated code further. You can tailor the builder's behavior to match your project's specific requirements. For detailed information, refer to the [Advanced Usage](advanced-usage.md) guide.
-
-## Contributing
-
-We welcome contributions from the community! If you encounter any issues, have suggestions for improvements, or want to contribute in any way, please read our [Contribution Guidelines](contributing.md) for details on how to get started.
-
-## License
-
-This project is licensed under the [MIT License](license.md). Feel free to use, modify, and distribute it according to the terms of the license.
-
----
-
-We hope our Immutable Builder Code Generation tool simplifies your development process and enhances the maintainability of your code. If you have any questions, concerns, or feedback, please don't hesitate to reach out to us. Happy coding!

@@ -3,6 +3,10 @@
     "Playground": {
       "commandName": "DebugRoslynComponent",
       "targetProject": "..\\Bnaya.BuilderPatternGenerator.SrcGen.Playground\\Bnaya.BuilderPatternGenerator.SrcGen.Playground.csproj"
+    },
+    "Tests": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\..\\Tests\\Bnaya.BuilderPatternGenerator.Playground.Tests\\Bnaya.BuilderPatternGenerator.Playground.Tests.csproj"
     }
   }
 }
